@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>🎓 Student Grade Predictor</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <title>Student Performance Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
   <div class="container">
-    <h1>🎓 Student Grade Predictor</h1>
+    <h1>📊 Student Performance Predictor</h1>
 
-    <form id="uploadForm" enctype="multipart/form-data">
-      <label>Upload Dataset (CSV):</label>
-      <input type="file" name="dataset" required>
-      <label>Target Column (grade/performance):</label>
-      <input type="text" name="target" placeholder="Enter target column" required>
-      <button type="submit">🚀 Train Model</button>
-    </form>
+    <!-- Train Model Section -->
+    <section>
+      <h2>1. Train Model with CSV</h2>
+      <form id="trainForm">
+        <input type="file" name="dataset" required>
+        <input type="text" name="target" placeholder="Target column (e.g., marks)" required>
+        <button type="submit">Train Model</button>
+      </form>
+      <div id="trainResult"></div>
+    </section>
 
-    <div id="result"></div>
+    <hr>
 
-    <h2>🧍 Predict for New Student</h2>
-    <input type="number" id="age" placeholder="Age">
-    <input type="number" id="study" placeholder="Hours Studied">
-    <input type="number" id="sleep" placeholder="Sleep Hours">
-    <button onclick="predictGrade()">Predict</button>
-
-    <p id="prediction"></p>
+    <!-- Manual Prediction Section -->
+    <section>
+      <h2>2. Manual Prediction</h2>
+      <form id="predictForm">
+        <input type="number" name="study_hours" placeholder="Study Hours" required>
+        <input type="number" name="sleep_hours" placeholder="Sleep Hours" required>
+        <input type="number" name="previous_marks" placeholder="Previous Marks" required>
+        <input type="number" name="papers_prepared" placeholder="Papers Prepared" required>
+        <button type="submit">Predict</button>
+      </form>
+      <div id="predictResult"></div>
+    </section>
   </div>
-  <script src="/static/script.js"></script>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+
 </html>

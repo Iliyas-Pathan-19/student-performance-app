@@ -1,30 +1,52 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
-  display: flex;
-  justify-content: center;
-  padding: 40px;
+    font-family: Arial, sans-serif;
+    background: #f4f7fa;
+    margin: 0;
+    padding: 0;
 }
+
 .container {
-  background: white;
-  padding: 20px 30px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
-  width: 400px;
+    width: 60%;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-h1, h2 { text-align: center; }
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+}
+
 input, button {
-  display: block;
-  margin: 10px auto;
-  padding: 8px;
-  width: 90%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
 }
+
 button {
-  background: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
+    background: #0077ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
-button:hover { background: #45a049; }
+
+button:hover {
+    background: #005fcc;
+}
+
+#trainResult, #predictResult {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #eef5ff;
+}

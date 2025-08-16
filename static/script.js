@@ -1,29 +1,41 @@
-document.getElementById("uploadForm").onsubmit = async function(e) {
-  e.preventDefault();
-  let formData = new FormData(this);
+// Handle Train Form
+document.getElementById("trainForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  let res = await fetch("/train", {
-    method: "POST",
-    body: formData
-  });
-  let data = await res.json();
+    let formData = new FormData(e.target);
 
-  document.getElementById("result").innerText = 
-    "✅ Model trained! Accuracy: " + data.accuracy + "%";
-};
+    let res = await fetch("/train", {
+        method: "POST",
+        body: formData
+    });
 
-async function predictGrade() {
-  let age = parseFloat(document.getElementById("age").value) || 0;
-  let study = parseFloat(document.getElementById("study").value) || 0;
-  let sleep = parseFloat(document.getElementById("sleep").value) || 0;
+    let data = await res.json();
+    document.getElementById("trainResult").innerHTML =
+        data.error ? `<p style="color:red">${data.error}</p>` :
+        `<p>✅ Model trained! Accuracy: ${data.accuracy}% <br> Features: ${data.features.join(", ")}</p>`;
+});
 
-  let res = await fetch("/predict", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({ features: [age, study, sleep] })
-  });
+// Handle Predict Form
+document.getElementById("predictForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  let data = await res.json();
-  document.getElementById("prediction").innerText = 
-    "🎯 Predicted Grade: " + data.prediction;
-}
+    let inputs = {};
+    [...e.target.elements].forEach(el => {
+        if (el.name) inputs[el.name] = parseFloat(el.value);
+    });
+
+    let res = await fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ features: inputs })
+    });
+
+    let data = await res.json();
+    if (data.error) {
+        document.getElementById("predictResult").innerHTML = `<p style="color:red">${data.error}</p>`;
+    } else {
+        document.getElementById("predictResult").innerHTML =
+            `<p>📈 Predicted Marks: <b>${data.prediction}</b></p>
+             <p>💡 Advice: ${data.advice.join(", ")}</p>`;
+    }
+});
