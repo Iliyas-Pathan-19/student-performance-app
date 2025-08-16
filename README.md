@@ -1,2 +1,3 @@
 # student-performance-app
 Predict students’ final grades based on study habits and socio-economic data.
+*/“This is a Student Performance Prediction web app. It uses a machine learning model (Random Forest) to predict student marks based on features like study hours, sleep hours, and previous performance. I built it using Python (Flask), HTML, CSS, and JavaScript. It can be trained on a dataset (CSV) or accept manual inputs. It helps students and teachers analyze and improve performance./*
