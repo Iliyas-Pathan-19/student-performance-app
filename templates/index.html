@@ -1,44 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Performance Predictor</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
   <div class="container">
-    <h1>📊 Student Performance Predictor</h1>
-
-    <!-- Train Model Section -->
-    <section>
-      <h2>1. Train Model with CSV</h2>
-      <form id="trainForm">
-        <input type="file" name="dataset" required>
-        <input type="text" name="target" placeholder="Target column (e.g., marks)" required>
-        <button type="submit">Train Model</button>
-      </form>
-      <div id="trainResult"></div>
-    </section>
-
-    <hr>
-
-    <!-- Manual Prediction Section -->
-    <section>
-      <h2>2. Manual Prediction</h2>
-      <form id="predictForm">
-        <input type="number" name="study_hours" placeholder="Study Hours" required>
-        <input type="number" name="sleep_hours" placeholder="Sleep Hours" required>
-        <input type="number" name="previous_marks" placeholder="Previous Marks" required>
-        <input type="number" name="papers_prepared" placeholder="Papers Prepared" required>
-        <button type="submit">Predict</button>
-      </form>
-      <div id="predictResult"></div>
-    </section>
+    <h1>🎓 Student Performance Predictor</h1>
+    <form id="predictionForm">
+      <input type="number" id="studyHours" placeholder="Study Hours" required>
+      <input type="number" id="sleepHours" placeholder="Sleep Hours" required>
+      <input type="number" id="previousMarks" placeholder="Previous Marks" required>
+      <input type="number" id="papersPrepared" placeholder="Papers Prepared" required>
+      <input type="number" id="age" placeholder="Age" required>
+      <select id="sex">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select>
+      <button type="submit">Predict Grade</button>
+    </form>
+    <div id="result"></div>
   </div>
-
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
-
 </html>
