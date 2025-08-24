@@ -1,25 +1,16 @@
-document.getElementById("predictionForm").addEventListener("submit", async (e) => {
+document.getElementById("predictForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
-  const data = {
-    StudyHours: parseFloat(document.getElementById("studyHours").value),
-    SleepHours: parseFloat(document.getElementById("sleepHours").value),
-    PreviousMarks: parseFloat(document.getElementById("previousMarks").value),
-    PapersPrepared: parseFloat(document.getElementById("papersPrepared").value),
-    Age: parseFloat(document.getElementById("age").value),
-    Sex: document.getElementById("sex").value
-  };
+  let formData = {};
+  new FormData(this).forEach((value, key) => formData[key] = value);
 
-  const response = await fetch("/predict", {
+  const res = await fetch("/predict", {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(data)
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData)
   });
 
-  const result = await response.json();
-  if (result.predicted_grade) {
-    document.getElementById("result").innerText = `Predicted Grade: ${result.predicted_grade}`;
-  } else {
-    document.getElementById("result").innerText = `Error: ${result.error}`;
-  }
+  const data = await res.json();
+  document.getElementById("result").innerHTML =
+    data.predicted_grade ? `🎯 Predicted Grade: <b>${data.predicted_grade}</b>` : `⚠️ Error: ${data.error}`;
 });

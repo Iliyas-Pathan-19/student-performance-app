@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Performance Predictor</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="container">
-    <h1>🎓 Student Performance Predictor</h1>
-    <form id="predictionForm">
-      <input type="number" id="studyHours" placeholder="Study Hours" required>
-      <input type="number" id="sleepHours" placeholder="Sleep Hours" required>
-      <input type="number" id="previousMarks" placeholder="Previous Marks" required>
-      <input type="number" id="papersPrepared" placeholder="Papers Prepared" required>
-      <input type="number" id="age" placeholder="Age" required>
-      <select id="sex">
+    <h1>📊 Student Performance Predictor</h1>
+    <form id="predictForm">
+      <input type="number" name="StudyHours" placeholder="Study Hours" required>
+      <input type="number" name="SleepHours" placeholder="Sleep Hours" required>
+      <input type="number" name="PreviousMarks" placeholder="Previous Marks" required>
+      <input type="number" name="PapersPrepared" placeholder="Papers Prepared" required>
+      <input type="number" name="Age" placeholder="Age" required>
+      <select name="Sex" required>
+        <option value="" disabled selected>Sex</option>
         <option value="M">Male</option>
         <option value="F">Female</option>
       </select>
